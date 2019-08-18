@@ -1,7 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:fish_redux_demo/Home_page/page.dart';
-import 'package:fish_redux_demo/login_page/page.dart';
 import 'package:flutter/material.dart' hide Action;
+
+import 'page/home_page/page.dart';
+import 'page/login_page/page.dart';
+import 'page/register_page/page.dart';
 
 void main() => runApp(createApp());
 
@@ -15,6 +17,9 @@ Widget createApp() {
     pages: <String, Page<Object, dynamic>>{
       /// 注册登陆主页面
       "login": LoginPage(),
+
+      /// 注册用户注册页面
+      "register":RegisterPage(),
 
       /// 注册首页
       "home": HomePage(),

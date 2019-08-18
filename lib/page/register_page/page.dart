@@ -5,18 +5,18 @@ import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
 
-class HomePage extends Page<HomeState, Map<String, dynamic>> {
-  HomePage()
+class RegisterPage extends Page<RegisterState, Map<String, dynamic>> {
+  RegisterPage()
       : super(
             initState: initState,
             effect: buildEffect(),
             reducer: buildReducer(),
             view: buildView,
-            dependencies: Dependencies<HomeState>(
+            dependencies: Dependencies<RegisterState>(
                 adapter: null,
-                slots: <String, Dependent<HomeState>>{
+                slots: <String, Dependent<RegisterState>>{
                 }),
-            middleware: <Middleware<HomeState>>[
+            middleware: <Middleware<RegisterState>>[
             ],);
 
 }

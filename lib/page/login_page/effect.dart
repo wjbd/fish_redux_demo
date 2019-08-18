@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:fluttertoast/fluttertoast.dart';
+import '../config.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -18,9 +19,10 @@ void _onLogin(Action action, Context<LoginState> ctx) async {
   Map<String, dynamic> params = {
     'name': ctx.state.usernameController.text,
     'passwd': ctx.state.passwordController.text,
+    'apikey': Config.apikey,
   };
   Response response = await Dio().post(
-    "https://api.apiopen.top/developerLogin",
+    "https://api.apiopen.top/loginUser",
     queryParameters: params,
   );
   int code = response.data['code'];

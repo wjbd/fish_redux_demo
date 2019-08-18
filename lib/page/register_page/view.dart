@@ -5,20 +5,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'action.dart';
 import 'state.dart';
 
-Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
+Widget buildView(RegisterState state, Dispatch dispatch, ViewService viewService) {
   return Scaffold(
     appBar: PreferredSize(
       //通过PreferredSize设置appbar的高度
       preferredSize: Size.fromHeight(50.0),
       child: AppBar(
-        automaticallyImplyLeading: false,
         //不显示返回键
-        centerTitle: true,
+        automaticallyImplyLeading: true,
         //是否居中，false靠左，true居中
-        // brightness: Brightness.dark,//状态栏字体颜色
+        centerTitle: true,
         elevation: 0,
         //高度
-        title: Text('OpeanApi开发者登录'),
+        title: Text('注册'),
       ),
     ),
     body: GestureDetector(
@@ -37,14 +36,14 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                   child: TextField(
                     controller: state.usernameController,
                     decoration: InputDecoration(
-                      hintText: '请输入OpenApi开发者账号',
+                      hintText: '请输入账号',
                     ),
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {
-                    dispatch(LoginActionCreator.onClearUsername());
+                    dispatch(RegisterActionCreator.onClearUsername());
                   },
                 ),
               ],
@@ -56,14 +55,14 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                     controller: state.passwordController,
                     obscureText: true, //设置显示密码
                     decoration: InputDecoration(
-                      hintText: '请输入OpenApi开发者密码',
+                      hintText: '请输入密码',
                     ),
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {
-                    dispatch(LoginActionCreator.onClearPassword());
+                    dispatch(RegisterActionCreator.onClearPassword());
                   },
                 ),
               ],
@@ -71,7 +70,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
             RaisedButton(
               color: Colors.blue,
               child: Text(
-                '登录',
+                '注册',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -80,7 +79,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                 if (state.usernameController.text.isNotEmpty) {
                   if (state.passwordController.text.isNotEmpty) {
                     //用户名和密码都不为空的时候进行登录操作
-                    dispatch(LoginActionCreator.onLogin());
+                    dispatch(RegisterActionCreator.onRegister());
                   } else {
                     Fluttertoast.showToast(msg: '密码不能为空');
                   }
@@ -89,10 +88,9 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                 }
               },
             ),
+            Text('本Demo使用的接口为OpenApi，所有接口文档和传参，可以查看官网demo'),
             Text('OpenApi地址：'),
             Text('https://www.apiopen.top/api.html'),
-            Text('登录接口地址：'),
-            Text('https://api.apiopen.top/developerLogin'),
           ],
         ),
       ),
