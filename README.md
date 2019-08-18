@@ -44,11 +44,6 @@ fish-redux-template插件//用于生成部分重复代码
 >flutter create --org com.lxq.fish_redux_demo --androidx fish_redux_demo
 ### 来写主函数
 ```
-import 'package:fish_redux/fish_redux.dart';
-import 'package:fish_redux_demo/Home_page/page.dart';
-import 'package:fish_redux_demo/login_page/page.dart';
-import 'package:flutter/material.dart' hide Action;
-
 void main() => runApp(createApp());
 
 /**
@@ -61,6 +56,9 @@ Widget createApp() {
     pages: <String, Page<Object, dynamic>>{
       /// 注册登陆主页面
       "login": LoginPage(),
+
+      /// 注册用户注册页面
+      "register":RegisterPage(),
 
       /// 注册首页
       "home": HomePage(),
@@ -121,7 +119,6 @@ EffectMiddleware<T> _pageAnalyticsMiddleware<T>({String tag = 'redux'}) {
     };
   };
 }
-
 ```
 ### LoginPage页面编写  
 首先通过fish-redux-template生成Page页面模板，会自动生成以下几个Dart文件
@@ -258,7 +255,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
         // brightness: Brightness.dark,//状态栏字体颜色
         elevation: 0,
         //高度
-        title: Text('OpeanApi开发者登录'),
+        title: Text('登录'),
       ),
     ),
     body: GestureDetector(
@@ -277,7 +274,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                   child: TextField(
                     controller: state.usernameController,
                     decoration: InputDecoration(
-                      hintText: '请输入OpenApi开发者账号',
+                      hintText: '请输入账号',
                     ),
                   ),
                 ),
@@ -296,7 +293,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                     controller: state.passwordController,
                     obscureText: true, //设置显示密码
                     decoration: InputDecoration(
-                      hintText: '请输入OpenApi开发者密码',
+                      hintText: '请输入密码',
                     ),
                   ),
                 ),
@@ -329,10 +326,18 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
                 }
               },
             ),
+            RaisedButton(
+              child: Text('注册'),
+              onPressed: (){
+                Navigator.of(viewService.context).pushNamed('register', arguments: null);
+              },
+            ),
             Text('OpenApi地址：'),
             Text('https://www.apiopen.top/api.html'),
             Text('登录接口地址：'),
             Text('https://api.apiopen.top/developerLogin'),
+            Text('测试账号：1'),
+            Text('测试账号密码：1'),
           ],
         ),
       ),
